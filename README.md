@@ -45,7 +45,7 @@ Via `.textlintrc`
 ### Options
 
 - `min_acronym_len`(default:`3`): Minimum size for the acronym
-- `ignore_acronyms`(default:`[]`): ignore acronym List.
+- `ignore_acronyms`(default:`[]`): Ignoring acronym List.
 
 ```
 {
