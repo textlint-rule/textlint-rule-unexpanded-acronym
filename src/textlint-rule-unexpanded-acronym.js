@@ -105,9 +105,8 @@ export default function (context, options) {
                     }
                 } else if (isCapitalized(word)) {
                     // Add temporarySequence
-                    // => add temp [word]
+                    // => add temp [Aword, Bword, Cword] = ABC
                     acronymCreator.addWord(word);
-
                 } else if (!includes(AcronymJoiningWords, word) // ignore of and...
                     && acronymCreator.canExtractAcronym()) {
                     // Create Acronym

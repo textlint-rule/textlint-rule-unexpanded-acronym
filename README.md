@@ -51,7 +51,9 @@ Via `.textlintrc`
 {
     "rules": {
         "unexpanded-acronym" : {
+            // AB is ignore, ABC is recognized.
             "min_acronym_len" : 3,
+            // OSS is ignore
             "ignore_acronyms" : ["OSS"]
         }
     }
