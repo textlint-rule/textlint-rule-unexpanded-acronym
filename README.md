@@ -44,7 +44,19 @@ Via `.textlintrc`
 
 ### Options
 
-- `min_acronym_len`(default:3): Minimum size for the acronym
+- `min_acronym_len`(default:`3`): Minimum size for the acronym
+- `ignore_acronyms`(default:`[]`): ignore acronym List.
+
+```
+{
+    "rules": {
+        "unexpanded-acronym" : {
+            "min_acronym_len" : 3,
+            "ignore_acronyms" : ["OSS"]
+        }
+    }
+}
+```
 
 ## Tests
 

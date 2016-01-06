@@ -23,7 +23,13 @@ IEEE: (I triple E) Institute of Electrical and Electronics Engineers
 NAACP: (N double A C P) National Association for the Advancement of Colored People
 NCAA: (N C double A or N C two A or N C A A) National Collegiate Athletic Association
 `
-
+        },
+        // options
+        {
+            text: "OSS",
+            options: {
+                ignore_acronyms: ["OSS"]
+            }
         }
     ],
     invalid: [

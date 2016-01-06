@@ -76,10 +76,12 @@ class AcronymCreator {
 }
 
 const defaultOptions = {
-    min_acronym_len: 3
+    min_acronym_len: 3,
+    ignore_acronyms: []
 };
 export default function (context, options) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
+    const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
     const {Syntax, RuleError, report, getSource} = context;
     // pickup acronyms
     const acronymList = [];
@@ -96,7 +98,9 @@ export default function (context, options) {
                 }
                 if (isAllCapitals(word)) {
                     // collect Acronym
-                    if (word.length >= minAcronymLength && !includes(acronymList, word)) {
+                    if (word.length >= minAcronymLength &&
+                        !includes(ignoreAcronymList, word) &&
+                        !includes(acronymList, word)) {
                         acronymList.push(word);
                     }
                 } else if (isCapitalized(word)) {
