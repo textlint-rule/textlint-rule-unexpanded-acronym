@@ -30,6 +30,12 @@ NCAA: (N C double A or N C two A or N C A A) National Collegiate Athletic Associ
             options: {
                 ignore_acronyms: ["OSS"]
             }
+        },
+        {
+            text: "GREEEEEEN",
+            options: {
+                max_acronym_len: 5
+            }
         }
     ],
     invalid: [

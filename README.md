@@ -45,6 +45,7 @@ Via `.textlintrc`
 ### Options
 
 - `min_acronym_len`(default:`3`): Minimum size for the acronym
+- `max_acronym_len`(default:`5`): Maximum size for the acronym
 - `ignore_acronyms`(default:`[]`): Ignoring acronym List.
 
 ```
@@ -53,6 +54,8 @@ Via `.textlintrc`
         "unexpanded-acronym" : {
             // AB is ignore, ABC is recognized.
             "min_acronym_len" : 3,
+            // GREEEEEEN is ignore
+            "max_acronym_len" : 5,
             // OSS is ignore
             "ignore_acronyms" : ["OSS"]
         }

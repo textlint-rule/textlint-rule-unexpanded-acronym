@@ -77,16 +77,28 @@ class AcronymCreator {
 
 const defaultOptions = {
     min_acronym_len: 3,
+    max_acronym_len: 5,
     ignore_acronyms: []
 };
+
+
 export default function (context, options) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
+    const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
     const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
     const {Syntax, RuleError, report, getSource} = context;
     // pickup acronyms
     const acronymList = [];
     // original words in document
     const expandedAcronymList = [];
+    const isWordSatisfy = (word) => {
+        if (word.length < minAcronymLength) {
+            return false;
+        } else if (word.length > maxAcronymLength) {
+            return false;
+        }
+        return true;
+    };
     return {
         [Syntax.Str](node){
             const text = getSource(node);
@@ -98,9 +110,8 @@ export default function (context, options) {
                 }
                 if (isAllCapitals(word)) {
                     // collect Acronym
-                    if (word.length >= minAcronymLength &&
-                        !includes(ignoreAcronymList, word) &&
-                        !includes(acronymList, word)) {
+                    var isOk = isWordSatisfy(word) && !includes(ignoreAcronymList, word);
+                    if (isOk && !includes(acronymList, word)) {
                         acronymList.push(word);
                     }
                 } else if (isCapitalized(word)) {
@@ -111,7 +122,7 @@ export default function (context, options) {
                     && acronymCreator.canExtractAcronym()) {
                     // Create Acronym
                     var acronym = acronymCreator.extractAcronym();
-                    if (acronym.length >= minAcronymLength) {
+                    if (isWordSatisfy(acronym)) {
                         expandedAcronymList.push(acronym);
                     }
                 }
@@ -119,7 +130,7 @@ export default function (context, options) {
             if (acronymCreator.canExtractAcronym()) {
                 // Create Acronym
                 var acronym = acronymCreator.extractAcronym();
-                if (acronym.length >= minAcronymLength) {
+                if (isWordSatisfy(acronym)) {
                     expandedAcronymList.push(acronym);
                 }
             }
