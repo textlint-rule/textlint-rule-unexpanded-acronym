@@ -30,7 +30,7 @@ NCAA: (N C double A or N C two A or N C A A) National Collegiate Athletic Associ
         {
             text: "WHO",
             errors: [
-                {message: `"WHO" is unexpanded acronym. Not found words that is expanded of "WHO" in the document.`}
+                {message: `"WHO" is unexpanded acronym. What does "WHO" stands for?`}
             ]
         }, {
             text: `When it comes to the Subject Of Cake (the sweet and delicious baked delicacy), one should
@@ -38,17 +38,17 @@ always remember (or at least consider).this foodstuff's effect on one's ever-exp
 
 Now we know what SOC stands for but there is no mention of TTP.`,
             errors: [
-                {message: `"TTP" is unexpanded acronym. Not found words that is expanded of "TTP" in the document.`}
+                {message: `"TTP" is unexpanded acronym. What does "TTP" stands for?`}
             ]
         }, {
             text: "use XHR, but we don't know what XHR.",
             errors: [
-                {message: `"XHR" is unexpanded acronym. Not found words that is expanded of "XHR" in the document.`}
+                {message: `"XHR" is unexpanded acronym. What does "XHR" stands for?`}
             ]
         }, {
             text: "HELLO is just a capitalized word.",
             errors: [
-                {message: `"HELLO" is unexpanded acronym. Not found words that is expanded of "HELLO" in the document.`}
+                {message: `"HELLO" is unexpanded acronym. What does "HELLO" stands for?`}
             ]
         }
     ]
