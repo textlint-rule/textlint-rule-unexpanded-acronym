@@ -5,6 +5,7 @@ var tester = new TextLintTester();
 tester.run("rule", rule, {
     // valid list from https://en.wikipedia.org/wiki/Acronym
     valid: [
+        "Open Source Software aka. OSS.",
         "World Health Organization is abbr of WHO.",
         `When it comes to the Subject Of Cake (the sweet and delicious baked delicacy), one should
 always remember (or at least consider).this foodstuff's effect on one's ever-expanding waistline.
