@@ -1,4 +1,4 @@
-# textlint-rule-unexpanded-acronym
+# textlint-rule-unexpanded-acronym [![Build Status](https://travis-ci.org/azu/textlint-rule-unexpanded-acronym.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-unexpanded-acronym)
 
 [textlint](https://github.com/textlint/textlint "textlint") rule that found Unexpanded Acronym.
 
