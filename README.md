@@ -27,8 +27,8 @@ I like ABC.
 
 Via CLI
 
-    npm install textlint textlint-rule-unexpanded-acronym
-    textlint --rule unexpanded-acronym
+    npm install textlint textlint-rule-unexpanded-acronym -D
+    $(npm bin)/textlint --rule unexpanded-acronym README.md
 
 Via `.textlintrc`
 
