@@ -2,8 +2,7 @@
 
 [textlint](https://github.com/textlint/textlint "textlint") rule that found Unexpanded Acronym.
 
-That is, if there exists an acronym ABC in the document,
-then there must also exist a sequence of capitalized words such as Axxx Bxx Cxxx.
+That is, if there exists an acronym ABC in the document, then there must also exist a sequence of capitalized words such as Axxx Bxx Cxxx.
 
 OK:
 
