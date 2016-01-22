@@ -19,7 +19,14 @@ const defaultOptions = {
     ]
 };
 
+/*
+Step
 
+1. Collect Acronym => `acronymList`
+2. Collect original words of Acronym => `expandedAcronymList`
+3. expandedAcronymList.includes(acronymList)
+    - Not found Acronym and throw error
+ */
 export default function (context, options) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
     const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
