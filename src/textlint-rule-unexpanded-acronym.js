@@ -2,83 +2,21 @@
 "use strict";
 const isCapitalized = require('is-capitalized');
 const includes = require('array-includes');
-const AcronymJoiningWords = [
-    "of",
-    "the",
-    "for",
-    "in",
-    "and",
-    "or",
-    "&"
-];
-function isAllCapitals(word) {
-    return /^[A-Z]+$/.test(word);
-}
-
-
-function expandOneWordToAcronym(CapitalWord) {
-    let acronym = CapitalWord.charAt(0);
-    let restWord = CapitalWord.slice(1);
-    let lastCapitalChar = null;
-    for (let i = 0; i < restWord.length; i++) {
-        const char = restWord.charAt(i);
-        if (/[A-Z]/.test(char)) {
-            lastCapitalChar = char;
-        } else {
-            if (lastCapitalChar) {
-                acronym += lastCapitalChar;
-                lastCapitalChar = null;
-            }
-        }
-    }
-    return acronym;
-}
-/*
- * create Acronym from words.
- * @param words
- * @returns {string}
- * @example XMLHttpRequest -> XHR
- * @example World Health Organization -> WHO
- */
-function expandWordsToAcronym(words) {
-    if (words.length === 1) {
-        return expandOneWordToAcronym(words[0]);
-    }
-    // World Health Organization -> WHO
-    return words.reduce((acronym, word) => {
-        acronym += word.charAt(0);
-        return acronym;
-    }, "");
-}
-
-class AcronymCreator {
-    constructor() {
-        this._wordQueue = [];
-    }
-
-    addWord(word) {
-        this._wordQueue.push(word);
-    }
-
-    canExtractAcronym() {
-        return this._wordQueue.length > 0;
-    }
-
-    extractAcronym() {
-        const acronym = expandWordsToAcronym(this._wordQueue);
-        this.clear();
-        return acronym;
-    }
-
-    clear() {
-        this._wordQueue = [];
-    }
-}
-
+import AcronymCreator from "./AcronymCreator";
+import { isAllCapitals, expandWordsToAcronym } from "./word-utils";
 const defaultOptions = {
     min_acronym_len: 3,
     max_acronym_len: 5,
-    ignore_acronyms: []
+    ignore_acronyms: [],
+    acronymJoiningWords: [
+        "of",
+        "the",
+        "for",
+        "in",
+        "and",
+        "or",
+        "&"
+    ]
 };
 
 
@@ -86,6 +24,7 @@ export default function (context, options) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
     const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
     const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
+    const acronymJoiningWords = options.acronymJoiningWords || defaultOptions.acronymJoiningWords;
     const {Syntax, RuleError, report, getSource} = context;
     // pickup acronyms
     const acronymList = [];
@@ -118,7 +57,7 @@ export default function (context, options) {
                     // Add temporarySequence
                     // => add temp [Aword, Bword, Cword] = ABC
                     acronymCreator.addWord(word);
-                } else if (!includes(AcronymJoiningWords, word) // ignore of and...
+                } else if (!includes(acronymJoiningWords, word) // ignore of and...
                     && acronymCreator.canExtractAcronym()) {
                     // Create Acronym
                     var acronym = acronymCreator.extractAcronym();
