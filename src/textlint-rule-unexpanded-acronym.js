@@ -3,7 +3,7 @@
 const isCapitalized = require('is-capitalized');
 const includes = require('array-includes');
 import AcronymCreator from "./AcronymCreator";
-import { isAllCapitals, expandWordsToAcronym } from "./word-utils";
+import {isAllCapitals, expandWordsToAcronym} from "./word-utils";
 const defaultOptions = {
     min_acronym_len: 3,
     max_acronym_len: 5,
@@ -27,7 +27,7 @@ Step
 3. expandedAcronymList.includes(acronymList)
     - Not found Acronym and throw error
  */
-export default function (context, options) {
+export default function (context, options = {}) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
     const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
     const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
