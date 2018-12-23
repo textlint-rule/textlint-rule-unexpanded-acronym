@@ -14,7 +14,7 @@ NG:
 
 ```
 I like ABC.
-(What does ABC stands for ???)
+(What does ABC stand for ???)
 ```
 
 
