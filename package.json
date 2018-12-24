@@ -22,23 +22,17 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "build": "textlint-scripts build",
+    "watch": "textlint-scripts build --watch",
     "prepublish": "npm run --if-present build",
-    "test": "mocha"
+    "test": "textlint-scripts test"
   },
   "keywords": [
     "textlint",
-    "rule"
+    "textlintrule"
   ],
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-preset-es2015": "^6.3.13",
-    "espower-babel": "^4.0.1",
-    "mocha": "^2.3.4",
-    "power-assert": "^1.2.0",
-    "textlint-tester": "^0.4.1"
+    "textlint-scripts": "^2.1.0"
   },
   "dependencies": {
     "array-includes": "^3.0.1",
