@@ -2,14 +2,14 @@
   "name": "textlint-rule-unexpanded-acronym",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-rule-unexpanded-acronym.git"
+    "url": "git+https://github.com/textlint-rule/textlint-rule-unexpanded-acronym.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-rule-unexpanded-acronym",
+  "homepage": "https://github.com/textlint-rule/textlint-rule-unexpanded-acronym",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-rule-unexpanded-acronym/issues"
+    "url": "https://github.com/textlint-rule/textlint-rule-unexpanded-acronym/issues"
   },
   "version": "1.2.2",
   "description": "textlint rule that check unexpanded acronym word.",
