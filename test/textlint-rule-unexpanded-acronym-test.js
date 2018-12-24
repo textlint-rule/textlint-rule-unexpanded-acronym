@@ -43,7 +43,7 @@ NCAA: (N C double A or N C two A or N C A A) National Collegiate Athletic Associ
         {
             text: "WHO",
             errors: [
-                {message: `"WHO" is unexpanded acronym. What does "WHO" stands for?`}
+                {message: `"WHO" is unexpanded acronym. What does "WHO" stand for?`}
             ]
         }, {
             text: `When it comes to the Subject Of Cake (the sweet and delicious baked delicacy), one should
@@ -51,17 +51,17 @@ always remember (or at least consider).this foodstuff's effect on one's ever-exp
 
 Now we know what SOC stands for but there is no mention of TTP.`,
             errors: [
-                {message: `"TTP" is unexpanded acronym. What does "TTP" stands for?`}
+                {message: `"TTP" is unexpanded acronym. What does "TTP" stand for?`}
             ]
         }, {
             text: "use XHR, but we don't know what XHR.",
             errors: [
-                {message: `"XHR" is unexpanded acronym. What does "XHR" stands for?`}
+                {message: `"XHR" is unexpanded acronym. What does "XHR" stand for?`}
             ]
         }, {
             text: "HELLO is just a capitalized word.",
             errors: [
-                {message: `"HELLO" is unexpanded acronym. What does "HELLO" stands for?`}
+                {message: `"HELLO" is unexpanded acronym. What does "HELLO" stand for?`}
             ]
         }
     ]

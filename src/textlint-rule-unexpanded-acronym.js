@@ -85,7 +85,7 @@ export default function (context, options = {}) {
             acronymList.forEach(acronym => {
                 // not found acronym in document
                 if (!includes(expandedAcronymList, acronym)) {
-                    report(node, new RuleError(`"${acronym}" is unexpanded acronym. What does "${acronym}" stands for?`));
+                    report(node, new RuleError(`"${acronym}" is unexpanded acronym. What does "${acronym}" stand for?`));
                 }
             });
         }
