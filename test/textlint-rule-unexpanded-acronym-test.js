@@ -13,7 +13,7 @@ always remember (or at least consider).this foodstuff's effect on one's ever-exp
 Now we know what SOC stands for`,
         // capitalized word
         "ABC can stand form the Australian Broadcasting Commission",
-        "XHR is XMLHttpRequest",
+        "XHR is known as XMLHttpRequest.",
         {
             text: `
 VHSIC stands for "Very High Speed Integrated Circuit".
@@ -23,6 +23,7 @@ SQL: ([siːkwəl] or ess-cue-el) Structured Query Language.
 IEEE: (I triple E) Institute of Electrical and Electronics Engineers
 NAACP: (N double A C P) National Association for the Advancement of Colored People
 NCAA: (N C double A or N C two A or N C A A) National Collegiate Athletic Association
+In the Amazon Web Service, it can be short as AWS.
 `
         },
         // options
