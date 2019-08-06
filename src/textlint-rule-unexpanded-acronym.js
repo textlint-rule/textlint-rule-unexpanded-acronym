@@ -68,35 +68,21 @@ module.exports = function (context, options = {}) {
                     && acronymCreator.canExtractAcronym()) {
                     // Create Acronym
                     var acronyms = acronymCreator.extractAcronym();
-                    //if the acronyms is a string i.e. only one acronym
-                    if(!Array.isArray(acronyms)){
-                        if (isWordSatisfy(acronyms)) {
-                            expandedAcronymList.push(acronyms);
-                        }
-                    //if the acronyms is an array of acronym, we need to extract the satisfied ones
-                    }else{
-                        acronyms.forEach(acronym => {
-                            if (isWordSatisfy(acronym)) {
-                                expandedAcronymList.push(acronym);
-                            }
-                        });
-                    }
-                }
-            });
-            if (acronymCreator.canExtractAcronym()) {
-                // Create Acronym
-                var acronyms = acronymCreator.extractAcronym();
-                if(!Array.isArray(acronyms)){
-                    if (isWordSatisfy(acronyms)) {
-                        expandedAcronymList.push(acronyms);
-                    }
-                }else{
                     acronyms.forEach(acronym => {
                         if (isWordSatisfy(acronym)) {
                             expandedAcronymList.push(acronym);
                         }
                     });
                 }
+            });
+            if (acronymCreator.canExtractAcronym()) {
+                // Create Acronym
+                var acronyms = acronymCreator.extractAcronym();
+                acronyms.forEach(acronym => {
+                    if (isWordSatisfy(acronym)) {
+                        expandedAcronymList.push(acronym);
+                    }
+                });
             }
         },
         [Syntax.Document + ":exit"](node){
