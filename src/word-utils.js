@@ -38,14 +38,14 @@ export function expandWordsToAcronym(words) {
         const result = [];
         // In American Broadcast Company -> ["C", "BC", "ABC", "IABC"]
         const reversedWords = words.slice().reverse();
-        reversedWords.reduce((acronym, word, i) => {
+        reversedWords.reduce((acronym, word) => {
             acronym.unshift(word.charAt(0));
             result.push(acronym.join(""));
             return acronym;
         }, []);
 
         // In American Broadcast Company -> ["I", "IA", "IAB", "IABC"]
-        words.reduce((acronym, word, i) => {
+        words.reduce((acronym, word) => {
             acronym.push(word.charAt(0));
             result.push(acronym.join(""));
             return acronym;
