@@ -1,22 +1,14 @@
 // LICENSE : MIT
 "use strict";
-const isCapitalized = require('is-capitalized');
-const includes = require('array-includes');
+const isCapitalized = require("is-capitalized");
+const includes = require("array-includes");
 import AcronymCreator from "./AcronymCreator";
-import {isAllCapitals, expandWordsToAcronym} from "./word-utils";
+import { isAllCapitals, expandWordsToAcronym } from "./word-utils";
 const defaultOptions = {
     min_acronym_len: 3,
     max_acronym_len: 5,
     ignore_acronyms: [],
-    acronymJoiningWords: [
-        "of",
-        "the",
-        "for",
-        "in",
-        "and",
-        "or",
-        "&"
-    ]
+    acronymJoiningWords: ["of", "the", "for", "in", "and", "or", "&"],
 };
 
 /*
@@ -32,7 +24,7 @@ module.exports = function (context, options = {}) {
     const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
     const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
     const acronymJoiningWords = options.acronymJoiningWords || defaultOptions.acronymJoiningWords;
-    const {Syntax, RuleError, report, getSource} = context;
+    const { Syntax, RuleError, report, getSource } = context;
     // pickup acronyms
     const acronymList = [];
     // original words in document
@@ -46,13 +38,13 @@ module.exports = function (context, options = {}) {
         return true;
     };
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             const words = text.split(/\b/);
             const acronymCreator = new AcronymCreator();
-            words.forEach(word => {
+            words.forEach((word) => {
                 if (word.trim().length === 0) {
-                    return
+                    return;
                 }
                 if (isAllCapitals(word)) {
                     // collect Acronym
@@ -64,11 +56,13 @@ module.exports = function (context, options = {}) {
                     // Add temporarySequence
                     // => add temp [Aword, Bword, Cword] = ABC
                     acronymCreator.addWord(word);
-                } else if (!includes(acronymJoiningWords, word) // ignore of and...
-                    && acronymCreator.canExtractAcronym()) {
+                } else if (
+                    !includes(acronymJoiningWords, word) && // ignore of and...
+                    acronymCreator.canExtractAcronym()
+                ) {
                     // Create Acronym
                     var acronyms = acronymCreator.extractAcronym();
-                    acronyms.forEach(acronym => {
+                    acronyms.forEach((acronym) => {
                         if (isWordSatisfy(acronym)) {
                             expandedAcronymList.push(acronym);
                         }
@@ -78,20 +72,23 @@ module.exports = function (context, options = {}) {
             if (acronymCreator.canExtractAcronym()) {
                 // Create Acronym
                 var acronyms = acronymCreator.extractAcronym();
-                acronyms.forEach(acronym => {
+                acronyms.forEach((acronym) => {
                     if (isWordSatisfy(acronym)) {
                         expandedAcronymList.push(acronym);
                     }
                 });
             }
         },
-        [Syntax.Document + ":exit"](node){
-            acronymList.forEach(acronym => {
+        [Syntax.Document + ":exit"](node) {
+            acronymList.forEach((acronym) => {
                 // not found acronym in document
                 if (!includes(expandedAcronymList, acronym)) {
-                    report(node, new RuleError(`"${acronym}" is unexpanded acronym. What does "${acronym}" stand for?`));
+                    report(
+                        node,
+                        new RuleError(`"${acronym}" is unexpanded acronym. What does "${acronym}" stand for?`)
+                    );
                 }
             });
-        }
-    }
-}
+        },
+    };
+};
