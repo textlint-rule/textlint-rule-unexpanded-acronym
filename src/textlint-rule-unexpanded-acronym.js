@@ -27,7 +27,7 @@ Step
 3. expandedAcronymList.includes(acronymList)
     - Not found Acronym and throw error
  */
-export default function (context, options = {}) {
+module.exports = function (context, options = {}) {
     const minAcronymLength = options.min_acronym_len || defaultOptions.min_acronym_len;
     const maxAcronymLength = options.max_acronym_len || defaultOptions.max_acronym_len;
     const ignoreAcronymList = options.ignore_acronyms || defaultOptions.ignore_acronyms;
@@ -67,18 +67,22 @@ export default function (context, options = {}) {
                 } else if (!includes(acronymJoiningWords, word) // ignore of and...
                     && acronymCreator.canExtractAcronym()) {
                     // Create Acronym
-                    var acronym = acronymCreator.extractAcronym();
-                    if (isWordSatisfy(acronym)) {
-                        expandedAcronymList.push(acronym);
-                    }
+                    var acronyms = acronymCreator.extractAcronym();
+                    acronyms.forEach(acronym => {
+                        if (isWordSatisfy(acronym)) {
+                            expandedAcronymList.push(acronym);
+                        }
+                    });
                 }
             });
             if (acronymCreator.canExtractAcronym()) {
                 // Create Acronym
-                var acronym = acronymCreator.extractAcronym();
-                if (isWordSatisfy(acronym)) {
-                    expandedAcronymList.push(acronym);
-                }
+                var acronyms = acronymCreator.extractAcronym();
+                acronyms.forEach(acronym => {
+                    if (isWordSatisfy(acronym)) {
+                        expandedAcronymList.push(acronym);
+                    }
+                });
             }
         },
         [Syntax.Document + ":exit"](node){

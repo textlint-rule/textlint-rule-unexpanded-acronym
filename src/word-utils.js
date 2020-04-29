@@ -25,18 +25,29 @@ export function expandOneWordToAcronym(CapitalWord) {
 }
 /*
  * create Acronym from words.
- * @param words
- * @returns {string}
- * @example XMLHttpRequest -> XHR
- * @example World Health Organization -> WHO
+ * @param {string[]} words
+ * @returns (1)string if only one word (2) array if multiple words 
  */
 export function expandWordsToAcronym(words) {
+    //XMLHttpRequest -> XHR
     if (words.length === 1) {
-        return expandOneWordToAcronym(words[0]);
+        return [expandOneWordToAcronym(words[0])];
     }
-    // World Health Organization -> WHO
-    return words.reduce((acronym, word) => {
-        acronym += word.charAt(0);
-        return acronym;
-    }, "");
+    else{
+        const result = [];
+        //In American Broadcast Company -> ["C", "BC", "ABC", "IABC"]
+        words.reverse().reduce((acronym, word, i) => {
+            acronym.unshift(word.charAt(0))
+            result.push(acronym.join(""))
+            return acronym;
+        }, []);
+
+        //In American Broadcast Company -> ["I", "IA", "IAB", "IABC"]
+        words.reverse().reduce((acronym, word, i) => {
+            acronym.push(word.charAt(0));
+            result.push(acronym.join(""))
+            return acronym;
+        }, []);
+        return result;
+    }
 }
